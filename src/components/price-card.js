@@ -1,6 +1,7 @@
 import { Box, Card, Text, Heading, Button } from 'theme-ui';
 import React from 'react';
 import List from './list';
+import { FaUnderline } from 'react-icons/fa';
 
 export default function PriceCard({
   data: {
@@ -14,7 +15,40 @@ export default function PriceCard({
   },
 }) {
   return (
-    <h1>PriceCard</h1>
+    <Card
+      className={header ? 'package__card active' : 'package__card'}
+      sx={styles.pricingBox}
+    >
+      {header && <Text sx={styles.header}>{header}</Text>}
+      <Box>
+        <Box className="package__header" sx={styles.pricingHeader}>
+          <Heading className="package__name" variant="title">{name}</Heading>
+          <Text as="p">{description}</Text>
+        </Box>
+        <List items={points} childStyle={styles.listItem} />
+        <Text className="package__price" sx={styles.price}>
+          {priceWithUnit}
+          <span>/Monthly</span>
+        </Text>
+        <Box sx={styles.buttonGroup}>
+          <Button variant="primary" aria-label={buttonText}>
+            {buttonText}
+          </Button>
+          {anotherOption && (
+            <Button 
+              variant="textButton"
+              className="free__trial"
+              aria-label={anotherOption}
+              sx={{
+                textDecoration: 'underline',
+              }}
+            >
+              {anotherOption}
+            </Button>
+          )}
+        </Box>
+      </Box>
+    </Card>
   );
 }
 
@@ -114,12 +148,12 @@ const styles = {
   buttonGroup: {
     textAlign: 'center',
     mt: ['30px', null, null, null, '35px'],
-    '.free__trail': {
-      color: 'secondary',
+    '.free__trial': {
+      color: 'black',
       width: '100%',
       justifyContent: 'center',
-      fontWeight: 700,
-      fontSize: ['14px', 1],
+      fontWeight: 500,
+      fontSize: ['12px'],
       p: '20px 0 0',
     },
   },
