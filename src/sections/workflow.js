@@ -6,6 +6,7 @@ import SectionHeader from 'components/section-header';
 import PatternBG from 'assets/patternBG.png';
 import ArrowOdd from 'assets/arrowOdd.svg';
 import ArrowEven from 'assets/arrowEven.svg';
+import { FaCentercode } from 'react-icons/fa';
 
 const data = [
   {
@@ -36,13 +37,30 @@ const data = [
 
 export default function WorkFlow() {
   return (
-    <h1>Workflow</h1>
+    <section sx={styles.workflow} >
+      <SectionHeader  
+        slogan="What's the function"
+        title="Meet the feature of our product"
+        isWhite={true}
+      />
+      <Grid sx={styles.grid}>
+        {data.map((item) => (
+          <Box sx={styles.card} key={item.id}>
+            <Box sx={styles.iconBox}>{`Q${item.id}`}</Box>
+            <Box sx={styles.wrapper}>
+              <Heading sx={styles.wrapper.title}>{item.title}</Heading>
+              <Text sx={styles.wrapper.subTitle} >{item.text}</Text>
+            </Box>
+          </Box>
+        ))}
+      </Grid>
+    </section>
   );
 }
 
 const styles = {
   workflow: {
-    backgroundColor: 'primary',
+    backgroundColor: 'secondary',
     backgroundImage: `url(${PatternBG})`,
     backgroundRepeat: `no-repeat`,
     backgroundPosition: 'center center',
@@ -78,7 +96,9 @@ const styles = {
     textAlign: ['center', null, 'left'],
     width: ['100%', '80%', '100%'],
     mx: ['auto'],
+    alignItems: 'center',
     px: [4, null, null, 0],
+    textAlign: 'center',
     '&::before': {
       position: 'absolute',
       content: '""',
